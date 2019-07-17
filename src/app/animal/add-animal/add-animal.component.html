@@ -1,0 +1,51 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Animal Name</label>
+        <input type="text" class="form-control" formControlName="name" #name/>
+      </div>
+      <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['name'].errors.required">
+          Animal Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Animal Gender</label>
+        <select class="form-control" formControlName="gender" #gender>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+
+      <div *ngIf="angForm.controls['gender'].invalid && (angForm.controls['gender'].dirty || angForm.controls['gender'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['gender'].errors.required">
+          Animal gender is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Animal Type</label>
+        <select class="form-control" formControlName="type" #type>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="guinea pig">Guinea Pig</option>
+        </select>
+      </div>
+
+      <div *ngIf="angForm.controls['type'].invalid && (angForm.controls['type'].dirty || angForm.controls['type'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['type'].errors.required">
+          Animal gender is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button (click)="addAnimal(name.value, gender.value, type.value)"
+        [disabled]="angForm.pristine || angForm.invalid" 
+        class="btn btn-primary">Add Animal</button>
+      </div>
+    </form>
+  </div>
+</div>
